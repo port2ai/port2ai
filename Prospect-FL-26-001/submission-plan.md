@@ -2,35 +2,55 @@
 
 ## AI-Staff Work Disclaimer
 
-Greg Focaccio (GF) will use AI-Staff in a supervised and controlled manner to help develop the work plan, solution approaches, documentation, validation checklists, and implementation support materials. GF will execute the remote access discovery, production implementation, configuration changes, testing, validation, and client-facing technical decisions.
+Greg Focaccio (GF) will use Codex Pro only in a supervised and controlled manner to help develop the work plan, solution approaches, documentation, validation checklists, and implementation support materials. GF will execute the remote access discovery, production implementation, configuration changes, testing, validation, and client-facing technical decisions.
 
 ## 1. Further Clarification Questions
 
 Before implementation, GF would confirm the following so the work can be completed safely and without avoidable routing disruption:
 
-- **1.1.** What Proxmox VE version is running on each node, and is this a single cluster or multiple clusters?
-- **1.2.** How many Proxmox nodes are in scope, and what are their management, storage, migration, and uplink interfaces?
-- **1.3.** Is the desired design plain BGP route advertisement, EVPN/VXLAN overlay networking, or both?
-- **1.4.** What router, firewall, or switch platform will Proxmox peer with for BGP?
-- **1.5.** Will BGP use private ASNs only, or are public ASN/prefix announcements involved?
-- **1.6.** What prefixes, VNets, VLANs, or tenant networks must be advertised?
-- **1.7.** Are exit nodes required for north-south traffic from SDN networks to the physical network or internet?
-- **1.8.** Should routing be active/active, active/passive, or tied to specific Proxmox nodes?
-- **1.9.** Are there existing FRRouting, OPNsense, pfSense, MikroTik, Cisco, Juniper, Arista, VyOS, or Linux router configurations to preserve?
-- **1.10.** What firewall/security policy should apply between SDN networks, host management, storage, and public access?
-- **1.11.** Is there a maintenance window, acceptable downtime, and rollback requirement?
-- **1.12.** What monitoring or validation tools are already in place, such as Zabbix, Grafana, LibreNMS, Prometheus, or syslog?
-- **1.13.** Is remote access available through VPN or bastion host, and will console/out-of-band access be available during changes?
-- **1.14.** Should the final deliverable include only configuration, or also diagrams, runbooks, automation, and knowledge transfer?
+### 1.1. Environment and Proxmox Scope
 
-### 1.15. Timeline, Urgency, and Schedule Tolerance
+- **1.1.1.** What Proxmox VE version is running on each node, and is this a single cluster or multiple clusters?
+- **1.1.2.** How many Proxmox nodes are in scope, and what are their management, storage, migration, and uplink interfaces?
+- **1.1.3.** Is the desired design plain BGP route advertisement, EVPN/VXLAN overlay networking, or both?
 
-- **1.15.1.** What is the required completion date or target go-live date for this work?
-- **1.15.2.** Is this project urgent because of an outage, pending migration, security exposure, customer commitment, billing issue, or other business deadline?
-- **1.15.3.** What happens if the schedule slips by 1 day, 3 days, or 1 week?
-- **1.15.4.** Is the priority speed, risk reduction, documentation quality, or a balanced delivery?
-- **1.15.5.** Are there fixed maintenance windows, blackout periods, business hours, or change-control approvals that constrain when GF can implement and test changes?
-- **1.15.6.** If discovery reveals additional network risk or missing access, should the timeline pause for approval or proceed with a best-effort mitigation path?
+### 1.2. Routing, Peering, and Network Design
+
+- **1.2.1.** What router, firewall, or switch platform will Proxmox peer with for BGP?
+- **1.2.2.** Will BGP use private ASNs only, or are public ASN/prefix announcements involved?
+- **1.2.3.** What prefixes, VNets, VLANs, or tenant networks must be advertised?
+- **1.2.4.** Are exit nodes required for north-south traffic from SDN networks to the physical network or internet?
+- **1.2.5.** Should routing be active/active, active/passive, or tied to specific Proxmox nodes?
+
+### 1.3. Existing Configuration, Security, and Operations
+
+- **1.3.1.** Are there existing FRRouting, OPNsense, pfSense, MikroTik, Cisco, Juniper, Arista, VyOS, or Linux router configurations to preserve?
+- **1.3.2.** What firewall/security policy should apply between SDN networks, host management, storage, and public access?
+- **1.3.3.** Is there a maintenance window, acceptable downtime, and rollback requirement?
+- **1.3.4.** What monitoring or validation tools are already in place, such as Zabbix, Grafana, LibreNMS, Prometheus, or syslog?
+
+### 1.4. Access and Deliverable Expectations
+
+- **1.4.1.** Is remote access available through VPN or bastion host, and will console/out-of-band access be available during changes?
+- **1.4.2.** Should the final deliverable include only configuration, or also diagrams, runbooks, automation, and knowledge transfer?
+
+### 1.5. Data Privacy and Control
+
+- **1.5.1.** What information is not approved to be shared into Codex Pro and must remain only in the client environment?
+- **1.5.2.** Which details must be changed for obscurity before being used in planning materials, such as public IP addresses, DNS names, hostnames, customer names, circuit IDs, provider account IDs, serial numbers, or location names?
+- **1.5.3.** Should public IP addresses be replaced with documentation ranges, such as `203.0.113.0/24`, and should private IPs be generalized before discussion?
+- **1.5.4.** Are there credentials, API tokens, SSH keys, VPN profiles, screenshots, configs, logs, or route tables that GF may inspect locally but must not paste into Codex Pro?
+- **1.5.5.** Should diagrams and runbooks use sanitized labels only, with a private client-side mapping kept outside Codex Pro?
+- **1.5.6.** Are there contractual, regulatory, customer confidentiality, or security-policy limits that affect what can be included in Codex Pro-assisted planning artifacts?
+
+### 1.6. Timeline, Urgency, and Schedule Tolerance
+
+- **1.6.1.** What is the required completion date or target go-live date for this work?
+- **1.6.2.** Is this project urgent because of an outage, pending migration, security exposure, customer commitment, billing issue, or other business deadline?
+- **1.6.3.** What happens if the schedule slips by 1 day, 3 days, or 1 week?
+- **1.6.4.** Is the priority speed, risk reduction, documentation quality, or a balanced delivery?
+- **1.6.5.** Are there fixed maintenance windows, blackout periods, business hours, or change-control approvals that constrain when GF can implement and test changes?
+- **1.6.6.** If discovery reveals additional network risk or missing access, should the timeline pause for approval or proceed with a best-effort mitigation path?
 
 ## 2. Proposed Submission Message
 
@@ -251,4 +271,4 @@ Output: Jointly prepared final runbook, topology diagram, configuration summary,
 - **12.2.** Ask for topology, version, ASN, and prefix details before committing to a final price.
 - **12.3.** Avoid promising public BGP announcements unless provider authorization, prefix ownership, RPKI/IRR status, and router access are confirmed.
 - **12.4.** Position this as careful network engineering plus documentation, not a quick one-click Proxmox task.
-- **12.5.** Keep AI-Staff assistance scoped to supervised planning, documentation, solution analysis, and support materials; GF owns remote access discovery, production implementation, testing, and validation.
+- **12.5.** Keep Codex Pro assistance scoped to supervised planning, documentation, solution analysis, and support materials; GF owns remote access discovery, production implementation, testing, and validation.
