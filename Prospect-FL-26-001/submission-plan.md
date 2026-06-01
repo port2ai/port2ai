@@ -1,8 +1,8 @@
 # Proxmox SDN/BGP Integration Submission Plan
 
-## AI-Assisted Work Disclaimer
+## AI-Staff Work Disclaimer
 
-Greg Focaccio (GF) will use Codex Pro in a supervised and controlled manner to help develop the work plan, solution approaches, documentation, validation checklists, and implementation support materials. GF will execute the remote access discovery, production implementation, configuration changes, testing, validation, and client-facing technical decisions.
+Greg Focaccio (GF) will use AI-Staff in a supervised and controlled manner to help develop the work plan, solution approaches, documentation, validation checklists, and implementation support materials. GF will execute the remote access discovery, production implementation, configuration changes, testing, validation, and client-facing technical decisions.
 
 ## 1. Further Clarification Questions
 
@@ -242,4 +242,4 @@ Output: Jointly prepared final runbook, topology diagram, configuration summary,
 - **12.2.** Ask for topology, version, ASN, and prefix details before committing to a final price.
 - **12.3.** Avoid promising public BGP announcements unless provider authorization, prefix ownership, RPKI/IRR status, and router access are confirmed.
 - **12.4.** Position this as careful network engineering plus documentation, not a quick one-click Proxmox task.
-- **12.5.** Keep AI assistance scoped to supervised planning, documentation, solution analysis, and support materials; GF owns remote access discovery, production implementation, testing, and validation.
+- **12.5.** Keep AI-Staff assistance scoped to supervised planning, documentation, solution analysis, and support materials; GF owns remote access discovery, production implementation, testing, and validation.
