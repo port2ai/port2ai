@@ -1,8 +1,12 @@
 # Proxmox SDN/BGP Integration Submission Plan
 
+## AI-Assisted Work Disclaimer
+
+Greg Focaccio (GF) will use Codex Pro in a supervised and controlled manner to help develop the work plan, solution approaches, documentation, validation checklists, and implementation support materials. GF will execute the remote access discovery, production implementation, configuration changes, testing, validation, and client-facing technical decisions.
+
 ## 1. Further Clarification Questions
 
-Before implementation, I would confirm the following so the work can be completed safely and without avoidable routing disruption:
+Before implementation, GF would confirm the following so the work can be completed safely and without avoidable routing disruption:
 
 - **1.1.** What Proxmox VE version is running on each node, and is this a single cluster or multiple clusters?
 - **1.2.** How many Proxmox nodes are in scope, and what are their management, storage, migration, and uplink interfaces?
@@ -23,72 +27,72 @@ Before implementation, I would confirm the following so the work can be complete
 
 Hello,
 
-I can help design and implement the Proxmox SDN/BGP integration with a controlled delivery process: discovery, architecture, configuration, validation, rollback planning, and final documentation.
+We can help design and implement the Proxmox SDN/BGP integration with a controlled delivery process: discovery, architecture, configuration, validation, rollback planning, and final documentation.
 
-My approach is to first review the current Proxmox cluster, physical network, routing design, ASN/prefix plan, and security requirements. From there I would produce a proposed SDN/BGP design, confirm the change plan with you, implement during an agreed window, validate route exchange and guest connectivity, then provide a final runbook so the setup can be maintained confidently.
+Our approach is to first review the current Proxmox cluster, physical network, routing design, ASN/prefix plan, and security requirements. From there we would produce a proposed SDN/BGP design and confirm the change plan with you. GF would then execute the approved implementation during an agreed window, perform testing and validation of route exchange and guest connectivity, and provide a final runbook so the setup can be maintained confidently.
 
 Relevant work areas include Proxmox VE networking, SDN zones and VNets, EVPN/VXLAN, FRRouting, BGP peering, VLAN/bridge design, firewall policy review, monitoring checks, and production-safe rollback planning.
 
 ## 3. Delivery Goals
 
-- **3.1.** Integrate Proxmox SDN with BGP in a stable, documented, and supportable way.
-- **3.2.** Ensure SDN VNets or EVPN zones route correctly through the intended upstream network.
-- **3.3.** Avoid route leaks, asymmetric routing, management-plane exposure, or downtime caused by unclear network boundaries.
-- **3.4.** Provide validation evidence showing BGP sessions, learned routes, advertised routes, VM/LXC connectivity, and failover behavior.
-- **3.5.** Leave the client with clear diagrams, final configuration notes, and operational handoff documentation.
+- **3.1.** We will develop a stable, documented, and supportable Proxmox SDN/BGP integration plan.
+- **3.2.** GF will execute the approved configuration so SDN VNets or EVPN zones route correctly through the intended upstream network.
+- **3.3.** We will design controls to avoid route leaks, asymmetric routing, management-plane exposure, or downtime caused by unclear network boundaries.
+- **3.4.** GF will provide validation evidence showing BGP sessions, learned routes, advertised routes, VM/LXC connectivity, and failover behavior.
+- **3.5.** We will leave the client with clear diagrams, final configuration notes, and operational handoff documentation.
 
 ## 4. Requirements Coverage Plan
 
 ### 4.1. Proxmox SDN Review
 
-- **4.1.1.** Confirm Proxmox VE version, cluster health, node membership, and SDN package readiness.
-- **4.1.2.** Review existing Linux bridges, bonds, VLAN-aware bridges, MTU settings, and physical uplinks.
-- **4.1.3.** Inspect current SDN configuration for zones, VNets, subnets, IPAM, DNS, and firewall integration.
-- **4.1.4.** Identify whether the right target is Simple, VLAN, VXLAN, or EVPN zone design.
+- **4.1.1.** GF will confirm Proxmox VE version, cluster health, node membership, and SDN package readiness.
+- **4.1.2.** GF will review existing Linux bridges, bonds, VLAN-aware bridges, MTU settings, and physical uplinks.
+- **4.1.3.** GF will inspect current SDN configuration for zones, VNets, subnets, IPAM, DNS, and firewall integration.
+- **4.1.4.** We will identify whether the right target is Simple, VLAN, VXLAN, or EVPN zone design.
 
 ### 4.2. BGP/EVPN Design
 
-- **4.2.1.** Define local and remote ASNs, router IDs, peer addresses, update source, timers, and authentication if supported.
-- **4.2.2.** Decide whether BGP is used for underlay routing, EVPN overlay control plane, external route advertisement, or all of these.
-- **4.2.3.** Define route targets, VNIs, L3VNI/L2VNI mapping, and any import/export requirements for EVPN.
-- **4.2.4.** Confirm route filtering so only approved prefixes are advertised.
-- **4.2.5.** Plan failover behavior for multi-node exit, active/active routing, or primary exit node design.
+- **4.2.1.** We will define local and remote ASNs, router IDs, peer addresses, update source, timers, and authentication if supported.
+- **4.2.2.** We will decide whether BGP is used for underlay routing, EVPN overlay control plane, external route advertisement, or all of these.
+- **4.2.3.** We will define route targets, VNIs, L3VNI/L2VNI mapping, and any import/export requirements for EVPN.
+- **4.2.4.** We will confirm route filtering so only approved prefixes are advertised.
+- **4.2.5.** We will plan failover behavior for multi-node exit, active/active routing, or primary exit node design.
 
 ### 4.3. Security and Risk Controls
 
-- **4.3.1.** Preserve management-plane isolation from tenant/guest SDN networks.
-- **4.3.2.** Apply explicit route filters, prefix lists, and BGP policy where supported.
-- **4.3.3.** Confirm firewall behavior at the Proxmox, router, and guest-network boundaries.
-- **4.3.4.** Avoid public route announcement unless ownership, ASN, RPKI/IRR, and provider approval are confirmed.
-- **4.3.5.** Prepare rollback steps before production changes begin.
+- **4.3.1.** We will preserve management-plane isolation from tenant/guest SDN networks in the solution approach.
+- **4.3.2.** GF will apply explicit route filters, prefix lists, and BGP policy where supported.
+- **4.3.3.** GF will confirm firewall behavior at the Proxmox, router, and guest-network boundaries.
+- **4.3.4.** We will avoid public route announcement unless ownership, ASN, RPKI/IRR, and provider approval are confirmed.
+- **4.3.5.** We will prepare rollback steps before production changes begin.
 
 ### 4.4. Implementation
 
-- **4.4.1.** Back up current Proxmox networking and SDN configuration.
-- **4.4.2.** Stage SDN controller, zone, VNet, subnet, and BGP/EVPN settings.
-- **4.4.3.** Configure or coordinate required upstream router BGP peer settings.
-- **4.4.4.** Apply changes in a maintenance window if production workloads are affected.
-- **4.4.5.** Reload SDN configuration and verify generated FRRouting/network state.
-- **4.4.6.** Test guest connectivity, route propagation, failover, and firewall boundaries.
+- **4.4.1.** GF will back up current Proxmox networking and SDN configuration.
+- **4.4.2.** GF will stage SDN controller, zone, VNet, subnet, and BGP/EVPN settings.
+- **4.4.3.** GF will configure or coordinate required upstream router BGP peer settings.
+- **4.4.4.** GF will apply changes in a maintenance window if production workloads are affected.
+- **4.4.5.** GF will reload SDN configuration and verify generated FRRouting/network state.
+- **4.4.6.** GF will test guest connectivity, route propagation, failover, and firewall boundaries.
 
 ### 4.5. Validation
 
-- **4.5.1.** Confirm Proxmox cluster and node health after changes.
-- **4.5.2.** Verify BGP neighbor state reaches `Established`.
-- **4.5.3.** Verify advertised and received prefixes match the approved route plan.
-- **4.5.4.** Confirm SDN VNets are reachable from intended networks only.
-- **4.5.5.** Test VM/LXC traffic across nodes, across VNets if required, and through exit nodes.
-- **4.5.6.** Simulate node or peer failure where safe and confirm expected route convergence.
-- **4.5.7.** Check logs for FRR, Proxmox SDN, kernel networking, and firewall drops.
+- **4.5.1.** GF will confirm Proxmox cluster and node health after changes.
+- **4.5.2.** GF will verify BGP neighbor state reaches `Established`.
+- **4.5.3.** GF will verify advertised and received prefixes match the approved route plan.
+- **4.5.4.** GF will confirm SDN VNets are reachable from intended networks only.
+- **4.5.5.** GF will test VM/LXC traffic across nodes, across VNets if required, and through exit nodes.
+- **4.5.6.** GF will simulate node or peer failure where safe and confirm expected route convergence.
+- **4.5.7.** GF will check logs for FRR, Proxmox SDN, kernel networking, and firewall drops.
 
 ### 4.6. Documentation and Handoff
 
-- **4.6.1.** Provide a current-state summary and final-state design.
-- **4.6.2.** Include a topology diagram with nodes, uplinks, routers, ASNs, VNIs, VLANs, and routed prefixes.
-- **4.6.3.** Document key Proxmox SDN objects and upstream BGP configuration.
-- **4.6.4.** Provide validation commands and expected outputs.
-- **4.6.5.** Provide rollback instructions.
-- **4.6.6.** Provide maintenance notes for adding future VNets, nodes, prefixes, or BGP peers.
+- **4.6.1.** We will provide a current-state summary and final-state design.
+- **4.6.2.** We will include a topology diagram with nodes, uplinks, routers, ASNs, VNIs, VLANs, and routed prefixes.
+- **4.6.3.** We will document key Proxmox SDN objects and upstream BGP configuration.
+- **4.6.4.** We will provide validation commands and expected outputs.
+- **4.6.5.** We will provide rollback instructions.
+- **4.6.6.** We will provide maintenance notes for adding future VNets, nodes, prefixes, or BGP peers.
 
 ## 5. Work Phases
 
@@ -98,10 +102,10 @@ Estimated time: 2-4 hours
 
 Deliverables:
 
-- **5.1.1.** Access confirmation
-- **5.1.2.** Current-state checklist
-- **5.1.3.** Risk notes
-- **5.1.4.** Missing information list
+- **5.1.1.** GF will complete access confirmation
+- **5.1.2.** GF will complete the current-state checklist
+- **5.1.3.** We will produce risk notes
+- **5.1.4.** We will produce the missing information list
 
 Client inputs needed:
 
@@ -116,10 +120,10 @@ Estimated time: 3-6 hours
 
 Deliverables:
 
-- **5.2.1.** Target SDN/BGP design
-- **5.2.2.** Change sequence
-- **5.2.3.** Rollback plan
-- **5.2.4.** Validation checklist
+- **5.2.1.** We will produce the target SDN/BGP design
+- **5.2.2.** We will produce the change sequence
+- **5.2.3.** We will produce the rollback plan
+- **5.2.4.** We will produce the validation checklist
 
 Client approval needed:
 
@@ -133,10 +137,10 @@ Estimated time: 4-10 hours depending on cluster size and router complexity
 
 Deliverables:
 
-- **5.3.1.** Proxmox SDN controller, zone, VNet, and subnet configuration
-- **5.3.2.** BGP/EVPN peer configuration
-- **5.3.3.** Router-side coordination or config recommendations
-- **5.3.4.** Applied route filtering and firewall controls
+- **5.3.1.** GF will configure Proxmox SDN controller, zone, VNet, and subnet settings
+- **5.3.2.** GF will configure BGP/EVPN peer settings
+- **5.3.3.** GF will handle router-side coordination or config recommendations
+- **5.3.4.** GF will apply route filtering and firewall controls
 
 ### 5.4. Phase 4: Testing and Stabilization
 
@@ -144,11 +148,11 @@ Estimated time: 2-5 hours
 
 Deliverables:
 
-- **5.4.1.** BGP session verification
-- **5.4.2.** Route advertisement verification
-- **5.4.3.** VM/LXC connectivity tests
-- **5.4.4.** Failover or convergence checks where safe
-- **5.4.5.** Log review and cleanup
+- **5.4.1.** GF will perform BGP session verification
+- **5.4.2.** GF will perform route advertisement verification
+- **5.4.3.** GF will perform VM/LXC connectivity tests
+- **5.4.4.** GF will perform failover or convergence checks where safe
+- **5.4.5.** GF will perform log review and cleanup
 
 ### 5.5. Phase 5: Final Documentation and Handoff
 
@@ -156,27 +160,27 @@ Estimated time: 2-4 hours
 
 Deliverables:
 
-- **5.5.1.** Final runbook
-- **5.5.2.** Network diagram
-- **5.5.3.** Config summary
-- **5.5.4.** Validation evidence
-- **5.5.5.** Operational notes and recommended next steps
+- **5.5.1.** We will deliver the final runbook
+- **5.5.2.** We will deliver the network diagram
+- **5.5.3.** We will deliver the config summary
+- **5.5.4.** GF will provide validation evidence from testing
+- **5.5.5.** We will deliver operational notes and recommended next steps
 
 ## 6. Estimated Timeline
 
 For a small to medium Proxmox cluster, this can likely be completed in 2-4 working days after access and requirements are confirmed.
 
-- **6.1.** Day 1: Discovery, current-state review, clarification, and target design.
-- **6.2.** Day 2: Change plan approval and staged configuration.
-- **6.3.** Day 3: Implementation, validation, troubleshooting, and stabilization.
-- **6.4.** Day 4: Documentation, handoff, and optional knowledge-transfer session.
+- **6.1.** Day 1: GF-led discovery, current-state review, clarification, and joint target design.
+- **6.2.** Day 2: Change plan approval and GF-led staged configuration.
+- **6.3.** Day 3: GF-led implementation, validation, troubleshooting, and stabilization.
+- **6.4.** Day 4: Joint documentation, handoff, and optional knowledge-transfer session.
 
 Complex multi-site, public ASN, DDoS, carrier, or EVPN multi-cluster requirements may require additional time.
 
 ## 7. Access Needed
 
 - **7.1.** Proxmox administrative access or a role with SDN/network visibility and change permissions.
-- **7.2.** SSH access to Proxmox nodes for network and FRR validation.
+- **7.2.** SSH access for GF to Proxmox nodes for network and FRR validation.
 - **7.3.** Router/firewall access or a network contact who can apply BGP peer configuration.
 - **7.4.** Existing diagrams, IPAM exports, prefix lists, ASN details, VLAN lists, and firewall policy notes.
 - **7.5.** Maintenance window and rollback contact.
@@ -222,15 +226,15 @@ The project should be considered complete when:
 
 ### 11.1. Milestone 1: Discovery and Design
 
-Output: Current-state review, clarification answers, target architecture, implementation plan, and rollback plan.
+Output: GF-led current-state review plus jointly developed clarification answers, target architecture, implementation plan, and rollback plan.
 
 ### 11.2. Milestone 2: Implementation and Validation
 
-Output: Configured Proxmox SDN/BGP integration, tested route exchange, guest connectivity validation, and troubleshooting.
+Output: GF-configured Proxmox SDN/BGP integration, tested route exchange, guest connectivity validation, and troubleshooting.
 
 ### 11.3. Milestone 3: Documentation and Handoff
 
-Output: Final runbook, topology diagram, configuration summary, and maintenance instructions.
+Output: Jointly prepared final runbook, topology diagram, configuration summary, and maintenance instructions.
 
 ## 12. Notes for Our Internal Use
 
@@ -238,3 +242,4 @@ Output: Final runbook, topology diagram, configuration summary, and maintenance 
 - **12.2.** Ask for topology, version, ASN, and prefix details before committing to a final price.
 - **12.3.** Avoid promising public BGP announcements unless provider authorization, prefix ownership, RPKI/IRR status, and router access are confirmed.
 - **12.4.** Position this as careful network engineering plus documentation, not a quick one-click Proxmox task.
+- **12.5.** Keep AI assistance scoped to supervised planning, documentation, solution analysis, and support materials; GF owns remote access discovery, production implementation, testing, and validation.
