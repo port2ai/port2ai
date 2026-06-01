@@ -23,6 +23,15 @@ Before implementation, GF would confirm the following so the work can be complet
 - **1.13.** Is remote access available through VPN or bastion host, and will console/out-of-band access be available during changes?
 - **1.14.** Should the final deliverable include only configuration, or also diagrams, runbooks, automation, and knowledge transfer?
 
+### 1.15. Timeline, Urgency, and Schedule Tolerance
+
+- **1.15.1.** What is the required completion date or target go-live date for this work?
+- **1.15.2.** Is this project urgent because of an outage, pending migration, security exposure, customer commitment, billing issue, or other business deadline?
+- **1.15.3.** What happens if the schedule slips by 1 day, 3 days, or 1 week?
+- **1.15.4.** Is the priority speed, risk reduction, documentation quality, or a balanced delivery?
+- **1.15.5.** Are there fixed maintenance windows, blackout periods, business hours, or change-control approvals that constrain when GF can implement and test changes?
+- **1.15.6.** If discovery reveals additional network risk or missing access, should the timeline pause for approval or proceed with a best-effort mitigation path?
+
 ## 2. Proposed Submission Message
 
 Hello,
